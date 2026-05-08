@@ -23,3 +23,13 @@ jobs:
         run: npx astro sync
       - name: Build
         run: npm run build
+      - name: Deploy
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_KEY }}
+          REMOTE_HOST: ${{ secrets.SERVER_HOST }}
+          REMOTE_USER: ${{ secrets.SERVER_USER }}
+          REMOTE_PORT: ${{ secrets.SERVER_PORT }}
+          SOURCE: "./dist/"           # 本地构建目录
+          TARGET: "/www/wwwroot/blog.parligerly.com"    # 服务器上的目标路径（请根据实际修改）
+          ARGS: "-avzr --delete"      # 参数含义：归档、压缩、递归、删除目标多余文件
