@@ -3,9 +3,9 @@ name: CI
 on:
   workflow_dispatch:  # 添加这一行就可以手动触发
   push:
-    branches: ["main"]
+    branches: ["saber"]
   pull_request:
-    branches: ["main"]
+    branches: ["saber"]
 
 jobs:
   build:
